@@ -4,7 +4,7 @@ pipeline{
         stage("Sonarqube analysis"){
             steps{
                 script{
-                withSonarQubeEnv(credentialsId: 'new_sonar') {
+                withSonarQubeEnv(credentialsId: 'sonarserver') {
                       sh 'mvn sonar:sonar'
                   }
 
@@ -14,14 +14,6 @@ pipeline{
                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
                       }
                     }
-                }
-            }
-        }
-        
-        stage("Pushing the artifact to nexus"){
-            steps{
-                script{
-                    sh 'mvn clean deploy'
                 }
             }
         }
