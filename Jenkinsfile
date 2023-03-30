@@ -5,6 +5,8 @@ pipeline{
             steps{
                 script{
                 withSonarQubeEnv(credentialsId: 'sonartoken') {
+    // some block
+}
                       sh 'mvn sonar:sonar'
                   }
 
